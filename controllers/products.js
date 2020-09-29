@@ -3,6 +3,9 @@ exports.productPage = async (req, res) => {
   console.log('REQ CONTROLLER', req.session)
   if(req.session.username && req.session.username.type == 'SUPER_ADMIN'){
     const getProducts = await axios.get(`${req.protocol}://${req.get('host')}/api/products`);
+    if(!getProducts) {
+      console.log('INFO_ERR')
+    }
     res.render('products', {
       term : 'short',
       products: getProducts.data,
