@@ -3,6 +3,8 @@ exports.addProductPage = async (req, res) => {
   let availableOrder = [];
   let withoutOrder = [];
   const getProducts = await axios.get(`${req.protocol}://${req.get('host')}/api/products`);
+  //remove console log if not needed.
+  //add null and undefined checker for getProducts and getProducts.data
   if(getProducts.data){
     for(let i = 0 ; i < getProducts.data.length; i++){
       availableOrder.push( parseInt(getProducts.data[i].order) )

@@ -4,11 +4,12 @@ exports.editProductPage = async (req, res) => {
   let withoutOrder = [];
   let largest= 0;
   const getProducts = await axios.get(`${req.protocol}://${req.get('host')}/api/products`);
+  //remove console log if not needed.
   if(getProducts.data){
-    for(let i = 0 ; i < getProducts.data.length; i++){
+    for(let i = 0 ; i < getProducts.data.length; i++){ //add null and undefined checker getProducts and getProducts.data
       availableOrder.push( parseInt(getProducts.data[i].order) )
     }
-    for (i = 0; i <= availableOrder.length; i++ ){
+    for (i = 0; i <= availableOrder.length; i++ ){ //add null checker for availableOrder
         if (availableOrder[i]>largest) {
            largest=availableOrder[i];
         }
@@ -16,9 +17,11 @@ exports.editProductPage = async (req, res) => {
   }
   largest += 1
   let available = [];
+  //remove console log if not needed.
   if(getProducts.data[0] != undefined && getProducts.data[0] != null){
     available = getProducts.data[0].withoutOrder
   }
+  //remove console log if not needed.
   if(available != null && available != undefined){
     available = available.filter((a, b) => available.indexOf(a) === b)
   }

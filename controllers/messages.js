@@ -1,6 +1,6 @@
 const axios = require('axios')
 exports.messagePage = async (req, res) => {
-  let messages = await axios.get(`${req.protocol}://${req.get('host')}/api/messages`)
+  let messages = await axios.get(`${req.protocol}://${req.get('host')}/api/messages`) //add null and undefined checkers for messages.data and messages.data.payload
   if(!messages) {
     console.log('INFO_ERR')
   }
